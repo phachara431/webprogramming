@@ -10,10 +10,13 @@ const usersRouter = require('./routes/users');
 
 // mongo
 const usersRouter_mongo = require("./routes/mongo/users");
+const customersRouter_mongo = require("./routes/mongo/customers");
+const productsRouter_mongo = require("./routes/mongo/products");
+
 
 const app = express();
 
-mongoose.connect("mongodb+srv://addmin:rmutl1234@cluster0.x3yfk.mongodb.net/rmutl?retryWrites=true&w=majority", {
+mongoose.connect("mongodb+srv://admin:admin@cluster0.de8ez.mongodb.net/rmutl?retryWrites=true&w=majority", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
@@ -31,5 +34,7 @@ app.use('/users', usersRouter);
 
 // mongo
 app.use("/mongo", usersRouter_mongo);
+app.use("/mongo",customersRouter_mongo);
+app.use("/mongo",productsRouter_mongo)
 
 module.exports = app;

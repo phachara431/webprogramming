@@ -1,8 +1,8 @@
-const users = require("../../models/mongo/users");
+const customers = require("../../models/mongo/customers");
 
 exports.index = async (req, res, next) => {
 
-    let data = await users.find();
+    let data = await customers.find();
     
     res.status(200).json(data);
  
@@ -10,9 +10,18 @@ exports.index = async (req, res, next) => {
 
 exports.insert = async (req, res, next) => {
 
-let data  = new users({
-    username: req.body.username,
-    email: req.body.email
+let data  = new customers({
+    
+        customerID: req.body.customerID,
+        customerTitleName: req.body.customerTitleNam,
+        customerFirstName: req.body.customerFirstName,
+        customerLastName: req.body.customerLastName,
+        customerAddress: req.body.customerAddress,
+        customerTel: req.body.customerTel,
+        customerEmail: req.body.customerEmail,
+        customeruUsername: req.body.customeruUsername,
+        customeruPassword: req.body.customeruPassword,
+
 });
 
 data .save();
@@ -25,18 +34,18 @@ message: "บันทึกข้อมูลเรียบร้อยแล�
 };
 
 exports.update = async (req, res, next) => {
-const id = "611958d7ee2c70355cd1f622";
+const id = "61197516ef794f3e209e5d16";
 
 const data = {
-    username: "updarenow22",
-    email: "update22@gmail.com"
+    customerID: "10000",
+        
 }
 
-let update = await users.updateOne(
+let update = await customers.updateOne(
   { _id: id },
 {
-    username: data.username,
-    email: data.email
+    customerID: data.customerID,
+    
 }
 );
 
@@ -57,7 +66,7 @@ exports.delete = async (req, res, next) => {
 
 const id = "611958a0ee2c70355cd1f61f";
 
-const data = await users.deleteOne(
+const data = await customers.deleteOne(
     { _id: id }
 );
 if(data.deletedCount === 0){

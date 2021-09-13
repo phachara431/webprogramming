@@ -1,23 +1,19 @@
 {
-  "name": "webprogramming",
-  "version": "1.0.0",
-  "description": "ณัฐดนัย ทินกร\r มหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา พิษณุโลก",
-  "main": "main.js",
+  "name": "backend",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./bin/www",
+    "dev": "nodemon ./bin/www"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/newherolike3/webprogramming.git"
-  },
-  "keywords": [],
-  "author": "Natdanai Tinnakon",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/newherolike3/webprogramming/issues"
-  },
-  "homepage": "https://github.com/newherolike3/webprogramming#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "mongoose": "^5.13.2",
+    "morgan": "~1.9.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
   }
 }
