@@ -4,7 +4,8 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 const mongoose = require("mongoose");
-
+ 
+const cors = require("cors");
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 
@@ -16,13 +17,13 @@ const productsRouter_mongo = require("./routes/mongo/products");
 
 const app = express();
 
-mongoose.connect("mongodb+srv://admin:admin@cluster0.de8ez.mongodb.net/rmutl?retryWrites=true&w=majority", {
+mongoose.connect("mongodb+srv://admin:rmutl1234@cluster0.de8ez.mongodb.net/rmutl?retryWrites=true&w=majority", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
     useFindAndModify: false
 });
-
+app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

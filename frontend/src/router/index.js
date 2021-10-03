@@ -2,40 +2,81 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Login from "../views/Login.vue"
-//import Customer from'../views/Customer.vue'
+import Register from "../views/Register.vue"
+
+// import Customer from '../views/Customer.vue'
 
 Vue.use(VueRouter)
 
-const routes = [
-  {
+const routes = [{
     path: '/',
-   name: 'Home',
-   component: Home
+    name: 'Home',
+    component: Home
   },
   {
     path: '/login',
-   name: 'Login',
-   component: Login
+    name: 'Login',
+    component: Login
   },
- // {
-   // path: '/about',
-    //name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-   // component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
- // },
- // {
-   // path: '/customer',
-   // name: 'Customer',
-   // component: Customer
-  //}
+  {
+    path: '/register',
+    name: 'Register',
+    component: Register
+  },
+  // {
+  //   path: '/about',
+  //   name: 'About',
+  //   // route level code-splitting
+  //   // this generates a separate chunk (about.[hash].js) for this route
+  //   // which is lazy-loaded when the route is visited.
+  //   component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+  // },
+  // {
+  //   path: '/customer',
+  //   name: 'Customer',
+  //   component: Customer
+  // }
 ]
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
-})
+});
+
+router.beforeEach(async (to, from, next) => {
+  switch (to.name) {
+    case "Home": {
+      // console.log(to.name);
+      const token = localStorage.getItem("token");
+      const status = localStorage.getItem("status");
+      const email = localStorage.getItem("email");
+      const username = localStorage.getItem("username");
+
+      if(token && status === "1" && email && username){
+        next();
+      } else {
+        next({ name: "Login" });
+      }
+
+      break;
+    }
+    case "Login": {
+      // console.log(to.name);
+
+      next();
+      break;
+    }
+    case "Register": {
+      // console.log(to.name);
+
+      next();
+      break;
+    }
+    default: {
+      break;
+    }
+  }
+});
 
 export default router
