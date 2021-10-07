@@ -17,7 +17,7 @@ const productsRouter_mongo = require("./routes/mongo/products");
 
 const app = express();
 
-mongoose.connect("mongodb+srv://admin:rmutl1234@cluster0.de8ez.mongodb.net/rmutl?retryWrites=true&w=majority", {
+mongoose.connect("mongodb+srv://addmin:rmutl1234@cluster0.x3yfk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,

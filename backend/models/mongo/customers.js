@@ -5,13 +5,13 @@ const schema = new Schema(
     {
         customerID: String,
         customerTitleName: String,
-        customersFirstName: String,
+        customerFirstName: String,
         customerLastName: String,
-        customersAddress: String,
-        customersTel: String,
-        customersEmail: String,
-        customersuUsername: String,
-        customersuPassword: String,
+        customerAddress: String,
+        customerTel: String,
+        customerEmail: String,
+        customerUserName: String,
+        customerPassword: String
     },
     {
         timestamps: true,

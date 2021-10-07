@@ -1,55 +1,68 @@
 const customers = require("../../models/mongo/customers");
 
+// R-Read อ่านข้อมูล
 exports.index = async (req, res, next) => {
 
     let data = await customers.find();
-
+    
     res.status(200).json(data);
-
+ 
 };
 
-exports.insert = async (req, res, next) => {
-
+//C-Create เพิ่มข้อมูล
+exports.insert = async (req,res,next) => {
+    
     let data = new customers({
-
-        customerID: req.body.customerID,
-        customerTitleName: req.body.customerTitleNam,
-        customersFirstName: req.body.customersFirstName,
+        customerID: req.body.ustomerID,
+        customerTitleName: req.body.customerTitleName,
+        customerFirstName:req.body.customerFirstName,
         customerLastName: req.body.customerLastName,
-        customersAddress: req.body.customersAddress,
-        customersTel: req.body.customersTel,
-        customersEmail: req.body.customersEmail,
-        customersuUsername: req.body.customersuUsername,
-        customersuPassword: req.body.customersuPassword,
-
+        customerAddress: req.body.customerAddress,
+        customerTel: req.body.customerTel,
+        customerEmail: req.body.customerEmail,
+        customerUserName: req.body.customerUserName,
+        customerPassword: req.body.customerPassword
     });
 
     data.save();
-
     res.status(200).json({
-        message: "บันทึกข้อมูลเรียบร้อยแล้ว"
+        message:"บันทึกข้อมูลเรียบร้อยแล้ว"
+    })
 
-    });
 
 };
-
-exports.update = async (req, res, next) => {
-    const id = "61197516ef794f3e209e5d16";
-
+//update ข้อมูล
+exports.update = async (req, res , next) => {
+    const id = "61191824405bf23d04f7949a";
     const data = {
-        customerID: "10111",
-
-    }
-
+        customerID :"421711111111",
+        customerTitleName :"mr",
+        customerFirstName :"tanak111itqweqeq",
+        customerLastName :"keaw11pinit",
+        customerAddress :"19/2110",
+        customerTel :"094601301130",
+        customerEmail :"tanakit42171@gmail.com",
+        customerUserName :"tanakit42171",
+        customerPassword :"0946013030",
+};
+    
+   
     let update = await customers.updateOne(
-        { _id: id },
-        {
-            customerID: data.customerID,
-
-        }
+{_id: id},
+{
+    customerID: data.ustomerID,
+    customerTitleName: data.customerTitleName,
+    customerFirstName:data.customerFirstName,
+    customerLastName: data.customerLastName,
+    customerAddress: data.customerAddress,
+    customerTel: data.customerTel,
+    customerEmail: data.customerEmail,
+    customerUserName: data.customerUserName,
+    customerPassword: data.customerPassword
+}
     );
-
-    if (update.nModified == 0) {
+    
+    if(update.nModified === 0){
         res.status(400).json({
             error: "ไม่สามารถแก้ไขข้อมูลได้"
         });
@@ -57,26 +70,22 @@ exports.update = async (req, res, next) => {
         res.status(200).json({
             data: "แก้ไขข้อมูลเรียบร้อยแล้ว"
         });
-    }
-
-
+    }    
 
 };
+// Delete ลบข้อมูล
 exports.delete = async (req, res, next) => {
-
-    const id = "611958a0ee2c70355cd1f61f";
-
+    const id = "6119199e5e30ea496422a454"
     const data = await customers.deleteOne(
-        { _id: id }
+        {_id: id }
     );
-    if (data.deletedCount === 0) {
+    if(data.deletedCount === 0){
         res.status(400).json({
-            error: "ไม่สามารถข้อมูลได้"
-        });
-    } else {
+            error:"ไม่สามารถลบข้อมูลได้"
+        })
+    }else{
         res.status(200).json({
-            message: "ลบข้อมูลเรียบร้อยแล้ว"
-        });
+            message:"ลบข้อมูลเรียบร้อยแล้ว"
+        })
     }
-
 };

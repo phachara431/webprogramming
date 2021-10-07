@@ -7,5 +7,4 @@ router.post("/customers", controller.insert);
 router.put("/customers", controller.update);
 router.delete("/customers", controller.delete);
 
-
 module.exports = router;
